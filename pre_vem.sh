@@ -78,13 +78,13 @@ for __keyfile in validator_keys/keystore-*.json; do
     __json=$(./ethdo validator exit --validator "${__keyfile}" --json --timeout 2m --passphrase "${__password}" --offline)
     exitstatus=$?
     if [ "${exitstatus}" -eq 0 ]; then
-      echo "${__json}" >"exit_messages/${__pubkey::10}--${__pubkey:90}-exit.json"
+      echo "${__json}" >"exit_messages/${__pubkey::10}--${__pubkey:88:10}-exit.json"
       exitstatus=$?
       if [ "${exitstatus}" -eq 0 ]; then
-        echo "Creating an exit message for validator ${__pubkey} into file ./exit_messages/${__pubkey::10}--${__pubkey:90}-exit.json succeeded"
+        echo "Creating an exit message for validator ${__pubkey} into file ./exit_messages/${__pubkey::10}--${__pubkey:88:10}-exit.json succeeded"
         (( created++ ))
       else
-        echo "Error writing exit json to file ./exit_messages/${__pubkey::10}--${__pubkey:90}-exit.json"
+        echo "Error writing exit json to file ./exit_messages/${__pubkey::10}--${__pubkey:88:10}-exit.json"
         (( failed++ ))
       fi
     else
